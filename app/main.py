@@ -7,6 +7,7 @@ from app import models  # noqa: F401
 from app.core.config import get_settings
 from app.db import Base, engine
 from app.routers.contact import router as contact_router
+from app.routers.content import router as content_router
 
 settings = get_settings()
 
@@ -38,4 +39,4 @@ def health_check():
 
 
 app.include_router(contact_router, prefix="/api")
-
+app.include_router(content_router, prefix="/api")

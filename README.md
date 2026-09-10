@@ -2,6 +2,8 @@
 
 API construida con FastAPI y SQLAlchemy. Incluye el endpoint de contacto que consume el frontend y una base preparada para autenticación, usuarios y administración.
 
+Los datos locales se guardan en `data/alejandra.db` usando SQLite. Ese archivo no se versiona. El endpoint `GET /api/content` devuelve el contenido configurable de la página; mientras no haya contenido guardado, responde `{}` y el frontend conserva sus textos de respaldo.
+
 ## Desarrollo local
 
 ```bash
