@@ -2,11 +2,11 @@ services:
   api:
     build: .
     ports:
-      - "8000:8000"
+      - "8080:8000"
     environment:
       APP_ENV: development
       DATABASE_URL: postgresql+psycopg://alejandra:alejandra@db:5432/alejandra
-      FRONTEND_ORIGINS: http://localhost:5173,http://localhost:8080
+      FRONTEND_ORIGINS: http://localhost:3000
     depends_on:
       db:
         condition: service_healthy
@@ -28,4 +28,3 @@ services:
 
 volumes:
   postgres_data:
-

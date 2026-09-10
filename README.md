@@ -11,7 +11,7 @@ pip install -r requirements.txt
 uvicorn app.main:app --reload
 ```
 
-La documentación interactiva estará disponible en `http://localhost:8000/docs`.
+La documentación interactiva estará disponible en `http://localhost:8080/docs`.
 
 ## Docker
 
@@ -19,7 +19,7 @@ La documentación interactiva estará disponible en `http://localhost:8000/docs`
 docker compose up --build
 ```
 
-Inicia la API en `http://localhost:8000` y PostgreSQL para el entorno local.
+Inicia la API en `http://localhost:8080` y PostgreSQL para el entorno local.
 
 ## Próximos pasos de administración
 
