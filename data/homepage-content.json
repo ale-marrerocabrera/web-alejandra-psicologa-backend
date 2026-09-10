@@ -1,0 +1,148 @@
+{
+  "brand": {
+    "name": "[Alejandra]"
+  },
+  "navigation": {
+    "links": [
+      {
+        "label": "Sobre mí",
+        "href": "#sobre-mi"
+      },
+      {
+        "label": "Servicios",
+        "href": "#servicios"
+      },
+      {
+        "label": "Testimonios",
+        "href": "#testimonios"
+      },
+      {
+        "label": "Contacto",
+        "href": "#contacto"
+      }
+    ],
+    "cta": "Agenda tu sesión"
+  },
+  "hero": {
+    "badge": "Psicología · Terapia online y presencial",
+    "titleLines": [
+      "Un espacio seguro",
+      "para tu bienestar",
+      "emocional."
+    ],
+    "subtitle": "Soy [Nombre de la psicóloga], psicóloga con más de 10 años acompañando procesos de ansiedad, duelo y crecimiento personal. Aquí encontrarás un lugar sin juicio donde poder escucharte, a tu ritmo.",
+    "primaryCta": "Agenda tu primera sesión",
+    "secondaryCta": "Conoce mi enfoque",
+    "trustNote": "Primera sesión de orientación sin compromiso · Confidencialidad garantizada",
+    "imageUrl": "https://images.unsplash.com/photo-1612872513575-7e7666b96ff3?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzNzl8MHwxfHNlYXJjaHwyfHxmZW1hbGUlMjB0aGVyYXBpc3QlMjB3YXJtJTIwcG9ydHJhaXQlMjBsaWdodHxlbnwwfHx8fDE3ODg5ODgwODV8MA&ixlib=rb-4.1.0&q=85",
+    "imageAlt": "Retrato cálido de la psicóloga en un espacio con luz natural",
+    "experience": "+10 años",
+    "experienceLabel": "acompañando personas"
+  },
+  "marquee": [
+    "Escucha sin juicio",
+    "A tu ritmo",
+    "Terapia online y presencial",
+    "Espacio confidencial",
+    "Acompañamiento cálido",
+    "Primera sesión de orientación"
+  ],
+  "about": {
+    "eyebrow": "Sobre mí",
+    "titleBefore": "Hola, soy ",
+    "titleAccent": "[Nombre de la psicóloga]",
+    "bioFirst": "Psicóloga sanitaria con más de 10 años de experiencia acompañando a personas en momentos de ansiedad, duelo, crisis vitales y búsqueda de sí mismas. Me formé en [Universidad / formación placeholder] y desde entonces he dedicado mi práctica a crear espacios donde cada persona se sienta escuchada de verdad.",
+    "bioSecond": "Creo que la terapia no es solo resolver problemas: es aprender a habitarte con más amabilidad. Mi trabajo combina el rigor de la psicología basada en evidencia con una cercanía genuina, porque sé que detrás de cada consulta hay una historia que merece cuidado.",
+    "imageUrl": "https://images.unsplash.com/photo-1734365294861-3f6df6a6af89?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzNzl8MHwxfHNlYXJjaHwzfHxmZW1hbGUlMjB0aGVyYXBpc3QlMjB3YXJtJTIwcG9ydHJhaXQlMjBsaWdodHxlbnwwfHx8fDE3ODg5ODgwODV8MA&ixlib=rb-4.1.0&q=85",
+    "imageAlt": "La psicóloga en su consulta, un espacio cálido con luz natural",
+    "keywords": [
+      "Terapia centrada en la persona",
+      "Enfoque cognitivo-conductual",
+      "Espacio confidencial"
+    ],
+    "stats": [
+      {
+        "value": "+10 años",
+        "label": "de experiencia"
+      },
+      {
+        "value": "+300",
+        "label": "procesos acompañados"
+      },
+      {
+        "value": "100%",
+        "label": "confidencial"
+      }
+    ]
+  },
+  "services": {
+    "eyebrow": "Servicios",
+    "titleBefore": "¿En qué puedo ",
+    "titleAccent": "acompañarte",
+    "titleAfter": "?",
+    "intro": "Cada proceso es único. Estas son las áreas en las que trabajo, siempre con un objetivo: que salgas de terapia con más recursos de los que trajiste.",
+    "cta": "Pedir información",
+    "items": [
+      {
+        "title": "Ansiedad y estrés",
+        "description": "Aprende a calmar tu mente y a recuperar la sensación de control en tu día a día, con herramientas que te acompañarán siempre."
+      },
+      {
+        "title": "Terapia de pareja",
+        "description": "Vuelvan a encontrarse: mejoren su comunicación, reconstruyan la confianza y decidan juntos hacia dónde quieren caminar."
+      },
+      {
+        "title": "Duelo y pérdida",
+        "description": "Atraviesa la pérdida con un acompañamiento respetuoso, dándole sentido a tu historia y recuperando las ganas de mirar adelante."
+      },
+      {
+        "title": "Autoestima",
+        "description": "Construye una relación más amable contigo: silencia la crítica interna y aprende a ocupar tu lugar con seguridad."
+      },
+      {
+        "title": "Crecimiento personal",
+        "description": "Conócete en profundidad, clarifica lo que quieres y diseña una vida más alineada con quien realmente eres."
+      }
+    ]
+  },
+  "testimonials": {
+    "eyebrow": "Testimonios",
+    "titleBefore": "Historias que ",
+    "titleAccent": "florecieron",
+    "intro": "Por confidencialidad, comparto estas palabras con iniciales y con el permiso de quienes las escribieron.",
+    "items": [
+      {
+        "initials": "M.G.",
+        "tag": "Proceso de ansiedad",
+        "quote": "Llegué sin poder dormir por la ansiedad y hoy tengo herramientas para mi día a día. Me sentí escuchada desde la primera sesión."
+      },
+      {
+        "initials": "A.R.",
+        "tag": "Terapia de pareja",
+        "quote": "Nos ayudó a hablarnos de otra manera. Recuperamos la confianza que creíamos perdida. Eternamente agradecidos."
+      },
+      {
+        "initials": "C.L.",
+        "tag": "Duelo",
+        "quote": "Acompañó mi duelo con un respeto y una calidez que no olvidaré. Aprendí a convivir con la pérdida sin que me apagara."
+      }
+    ]
+  },
+  "contact": {
+    "eyebrow": "Contacto",
+    "titleBefore": "Dar el primer paso también es un ",
+    "titleAccent": "acto de valentía",
+    "titleAfter": ".",
+    "intro": "Escríbeme y hablemos. Te responderé personalmente, sin compromiso, y juntas veremos si soy la persona adecuada para acompañarte.",
+    "email": "[email@placeholder.com]",
+    "phone": "[+34 000 000 000]",
+    "location": "[Ciudad] · Sesiones online y presenciales"
+  },
+  "footer": {
+    "description": "Psicología con calidez humana y rigor profesional. Un espacio seguro para tu bienestar emocional.",
+    "contactHeading": "Contacto",
+    "followHeading": "Sígueme",
+    "privacyTitle": "Aviso de privacidad",
+    "copyright": "© 2026 [Nombre de la psicóloga] · Todos los derechos reservados"
+  }
+}

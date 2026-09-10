@@ -1,20 +1,34 @@
 from contextlib import asynccontextmanager
+import json
+from pathlib import Path
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from app import models  # noqa: F401
 from app.core.config import get_settings
-from app.db import Base, engine
+from app.db import Base, SessionLocal, engine
+from app.models.content import SiteContent
 from app.routers.contact import router as contact_router
 from app.routers.content import router as content_router
 
 settings = get_settings()
+seed_content_path = Path(__file__).resolve().parent.parent / "data" / "homepage-content.json"
+
+
+def seed_homepage_content() -> None:
+    """Populate a new database without overwriting later editorial changes."""
+    with SessionLocal() as db:
+        if db.get(SiteContent, "homepage") is None:
+            with seed_content_path.open(encoding="utf-8") as seed_file:
+                db.add(SiteContent(key="homepage", data=json.load(seed_file)))
+                db.commit()
 
 
 @asynccontextmanager
 async def lifespan(_: FastAPI):
     Base.metadata.create_all(bind=engine)
+    seed_homepage_content()
     yield
 
 
