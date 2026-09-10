@@ -14,5 +14,6 @@ class ContactMessage(Base):
     email: Mapped[str] = mapped_column(String(255), index=True)
     phone: Mapped[str | None] = mapped_column(String(32), nullable=True)
     message: Mapped[str] = mapped_column(Text)
+    status: Mapped[str] = mapped_column(String(16), default="unread", index=True)
+    read_at: Mapped[datetime | None] = mapped_column(DateTime, nullable=True)
     created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow)
-

@@ -10,9 +10,11 @@ from app.core.config import get_settings
 from app.db import SessionLocal
 from app.models.content import SiteContent
 from app.models.user import User
+from app.routers.admin import router as admin_router
 from app.routers.admin_auth import router as admin_auth_router
 from app.routers.contact import router as contact_router
 from app.routers.content import router as content_router
+from app.schemas.content import HomepageContent
 
 settings = get_settings()
 seed_content_path = Path(__file__).resolve().parent.parent / "data" / "homepage-content.json"
@@ -24,7 +26,7 @@ def seed_homepage_content() -> None:
         content = db.get(SiteContent, "homepage")
         if content is None or settings.app_env == "development":
             with seed_content_path.open(encoding="utf-8") as seed_file:
-                seed_data = json.load(seed_file)
+                seed_data = HomepageContent.model_validate(json.load(seed_file)).model_dump(mode="json")
 
             if content is None:
                 db.add(SiteContent(key="homepage", data=seed_data))
@@ -88,3 +90,4 @@ def health_check():
 app.include_router(contact_router, prefix="/api")
 app.include_router(content_router, prefix="/api")
 app.include_router(admin_auth_router, prefix="/api")
+app.include_router(admin_router, prefix="/api")
