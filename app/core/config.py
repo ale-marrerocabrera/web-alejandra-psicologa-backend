@@ -7,6 +7,8 @@ class Settings(BaseSettings):
     app_env: str = "development"
     database_url: str = "sqlite:///./data/alejandra.db"
     frontend_origins: str = "http://localhost:3000"
+    contact_rate_limit: int = 5
+    contact_rate_window_seconds: int = 3600
 
     model_config = SettingsConfigDict(env_file=".env", extra="ignore")
 

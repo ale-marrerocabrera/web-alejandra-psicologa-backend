@@ -6,9 +6,9 @@ class ContactCreate(BaseModel):
     email: EmailStr
     phone: str | None = Field(default=None, max_length=32)
     message: str = Field(min_length=10, max_length=4000)
+    website: str = Field(default="", max_length=200)
 
 
 class ContactResponse(BaseModel):
     id: int
     message: str
-
