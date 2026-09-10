@@ -4,6 +4,8 @@ API construida con FastAPI y SQLAlchemy. Incluye el endpoint de contacto que con
 
 Los datos locales se guardan en `data/alejandra.db` usando SQLite. Ese archivo no se versiona. En cambio, `data/homepage-content.json` sí se versiona: sirve de semilla y se carga al crear una base nueva. El endpoint `GET /api/content` devuelve el contenido configurable de la página.
 
+Con `APP_ENV=development`, el contenido se vuelve a sincronizar desde ese JSON en cada inicio de la API. En producción se conserva el contenido ya guardado para no sobrescribir ediciones del panel de administración.
+
 ## Desarrollo local
 
 ```bash
