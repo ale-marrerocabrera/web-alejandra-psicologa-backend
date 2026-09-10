@@ -7,8 +7,10 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from app import models  # noqa: F401
 from app.core.config import get_settings
-from app.db import Base, SessionLocal, engine
+from app.db import SessionLocal
 from app.models.content import SiteContent
+from app.models.user import User
+from app.routers.admin_auth import router as admin_auth_router
 from app.routers.contact import router as contact_router
 from app.routers.content import router as content_router
 
@@ -31,10 +33,35 @@ def seed_homepage_content() -> None:
             db.commit()
 
 
+def seed_admin_user() -> None:
+    if not settings.admin_email and not settings.admin_password:
+        return
+    if not settings.admin_email or not settings.admin_password:
+        raise RuntimeError("ADMIN_EMAIL y ADMIN_PASSWORD deben configurarse juntos.")
+    if len(settings.admin_password) < 12:
+        raise RuntimeError("ADMIN_PASSWORD debe tener al menos 12 caracteres.")
+
+    from sqlalchemy import select
+
+    from app.core.auth import hash_password
+
+    with SessionLocal() as db:
+        admin_exists = db.scalar(select(User).where(User.role == "admin"))
+        if not admin_exists:
+            db.add(
+                User(
+                    email=str(settings.admin_email).lower(),
+                    password_hash=hash_password(settings.admin_password),
+                    role="admin",
+                )
+            )
+            db.commit()
+
+
 @asynccontextmanager
 async def lifespan(_: FastAPI):
-    Base.metadata.create_all(bind=engine)
     seed_homepage_content()
+    seed_admin_user()
     yield
 
 
@@ -48,8 +75,8 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=settings.allowed_origins,
     allow_credentials=True,
-    allow_methods=["GET", "POST", "OPTIONS"],
-    allow_headers=["Content-Type", "Authorization"],
+    allow_methods=["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+    allow_headers=["Content-Type", "Authorization", "X-CSRF-Token"],
 )
 
 
@@ -60,3 +87,4 @@ def health_check():
 
 app.include_router(contact_router, prefix="/api")
 app.include_router(content_router, prefix="/api")
+app.include_router(admin_auth_router, prefix="/api")
