@@ -17,12 +17,18 @@ seed_content_path = Path(__file__).resolve().parent.parent / "data" / "homepage-
 
 
 def seed_homepage_content() -> None:
-    """Populate a new database without overwriting later editorial changes."""
+    """Seed a new database; refresh it from JSON automatically in development."""
     with SessionLocal() as db:
-        if db.get(SiteContent, "homepage") is None:
+        content = db.get(SiteContent, "homepage")
+        if content is None or settings.app_env == "development":
             with seed_content_path.open(encoding="utf-8") as seed_file:
-                db.add(SiteContent(key="homepage", data=json.load(seed_file)))
-                db.commit()
+                seed_data = json.load(seed_file)
+
+            if content is None:
+                db.add(SiteContent(key="homepage", data=seed_data))
+            else:
+                content.data = seed_data
+            db.commit()
 
 
 @asynccontextmanager
