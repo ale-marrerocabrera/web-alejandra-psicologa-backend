@@ -4,7 +4,7 @@ services:
     ports:
       - "8080:8000"
     environment:
-      APP_ENV: development
+      APP_ENV: production
       DATABASE_URL: postgresql+psycopg://alejandra:alejandra@db:5432/alejandra
       FRONTEND_ORIGINS: http://localhost:3000
       ADMIN_EMAIL: ${ADMIN_EMAIL:-}
