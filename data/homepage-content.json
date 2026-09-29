@@ -25,11 +25,7 @@
   },
   "hero": {
     "badge": "Psicología · Terapia online y presencial",
-    "titleLines": [
-      "Un espacio seguro",
-      "para tu bienestar",
-      "emocional."
-    ],
+    "titleLines": ["Un espacio seguro", "para tu bienestar", "emocional."],
     "subtitle": "Soy [Nombre de la psicóloga], psicóloga con más de 10 años acompañando procesos de ansiedad, duelo y crecimiento personal. Aquí encontrarás un lugar sin juicio donde poder escucharte, a tu ritmo.",
     "primaryCta": "Agenda tu primera sesión",
     "secondaryCta": "Conoce mi enfoque",
@@ -143,6 +139,12 @@
     "contactHeading": "Contacto",
     "followHeading": "Sígueme",
     "privacyTitle": "Aviso de privacidad",
+    "privacyEmail": "[email@placeholder.com]",
+    "socials": {
+      "instagram": "",
+      "linkedin": "",
+      "facebook": ""
+    },
     "copyright": "© 2026 [Nombre de la psicóloga] · Todos los derechos reservados"
   }
 }

@@ -93,12 +93,20 @@ class Contact(ContentModel):
     location: NonEmptyText
 
 
+class SocialLinks(ContentModel):
+    instagram: str = ""
+    linkedin: str = ""
+    facebook: str = ""
+
+
 class Footer(ContentModel):
     description: NonEmptyText
     contactHeading: NonEmptyText
     followHeading: NonEmptyText
     privacyTitle: NonEmptyText
     copyright: NonEmptyText
+    privacyEmail: NonEmptyText = "[email@placeholder.com]"
+    socials: SocialLinks = Field(default_factory=SocialLinks)
 
 
 class HomepageContent(ContentModel):
