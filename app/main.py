@@ -4,6 +4,7 @@ from pathlib import Path
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 
 from app import models  # noqa: F401
 from app.core.config import get_settings
@@ -91,3 +92,7 @@ app.include_router(contact_router, prefix="/api")
 app.include_router(content_router, prefix="/api")
 app.include_router(admin_auth_router, prefix="/api")
 app.include_router(admin_router, prefix="/api")
+
+upload_directory = settings.upload_dir
+upload_directory.mkdir(parents=True, exist_ok=True)
+app.mount("/api/uploads", StaticFiles(directory=upload_directory), name="uploaded-images")

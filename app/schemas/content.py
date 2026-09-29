@@ -91,6 +91,9 @@ class Contact(ContentModel):
     email: NonEmptyText
     phone: NonEmptyText
     location: NonEmptyText
+    emailVisible: bool = True
+    phoneVisible: bool = True
+    locationVisible: bool = True
 
 
 class SocialLinks(ContentModel):

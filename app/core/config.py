@@ -1,4 +1,5 @@
 from functools import lru_cache
+from pathlib import Path
 
 from pydantic import EmailStr, field_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
@@ -14,6 +15,7 @@ class Settings(BaseSettings):
     admin_password: str | None = None
     session_duration_hours: int = 8
     session_cookie_secure: bool = False
+    upload_dir: Path = Path("data/uploads")
 
     model_config = SettingsConfigDict(env_file=".env", extra="ignore")
 

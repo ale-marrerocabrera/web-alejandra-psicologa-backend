@@ -1,10 +1,14 @@
 from datetime import datetime
+from io import BytesIO
+from uuid import uuid4
 
-from fastapi import APIRouter, Depends, HTTPException, Query, Response, status
+from fastapi import APIRouter, Depends, File, HTTPException, Query, Request, Response, UploadFile, status
+from PIL import Image, UnidentifiedImageError
 from sqlalchemy import select
 from sqlalchemy.orm import Session
 
 from app.core.auth import require_admin, require_csrf
+from app.core.config import get_settings
 from app.db import get_db
 from app.models.contact import ContactMessage
 from app.models.content import SiteContent
@@ -18,6 +22,39 @@ from app.schemas.admin import (
 )
 
 router = APIRouter(prefix="/admin", tags=["admin"])
+MAX_IMAGE_SIZE = 5 * 1024 * 1024
+MAX_IMAGE_PIXELS = 25_000_000
+IMAGE_EXTENSIONS = {"JPEG": "jpg", "PNG": "png", "WEBP": "webp"}
+
+
+@router.post("/uploads", status_code=status.HTTP_201_CREATED)
+async def upload_image(
+    request: Request,
+    file: UploadFile = File(...),
+    _: User = Depends(require_admin),
+    __: None = Depends(require_csrf),
+) -> dict[str, str]:
+    image_data = await file.read(MAX_IMAGE_SIZE + 1)
+    await file.close()
+    if len(image_data) > MAX_IMAGE_SIZE:
+        raise HTTPException(status_code=status.HTTP_413_REQUEST_ENTITY_TOO_LARGE, detail="La imagen supera el límite de 5 MB.")
+
+    try:
+        with Image.open(BytesIO(image_data)) as image:
+            image_format = image.format
+            if image_format not in IMAGE_EXTENSIONS:
+                raise HTTPException(status_code=status.HTTP_415_UNSUPPORTED_MEDIA_TYPE, detail="Usa una imagen JPG, PNG o WEBP.")
+            if image.width * image.height > MAX_IMAGE_PIXELS:
+                raise HTTPException(status_code=status.HTTP_413_REQUEST_ENTITY_TOO_LARGE, detail="La resolución de la imagen es demasiado grande.")
+            image.verify()
+    except (UnidentifiedImageError, OSError, Image.DecompressionBombError) as error:
+        raise HTTPException(status_code=status.HTTP_415_UNSUPPORTED_MEDIA_TYPE, detail="El archivo no es una imagen válida.") from error
+
+    filename = f"{uuid4().hex}.{IMAGE_EXTENSIONS[image_format]}"
+    upload_dir = get_settings().upload_dir
+    upload_dir.mkdir(parents=True, exist_ok=True)
+    (upload_dir / filename).write_bytes(image_data)
+    return {"url": str(request.url_for("uploaded-images", path=filename))}
 
 
 @router.get("/content/homepage", response_model=HomepageContentResponse)

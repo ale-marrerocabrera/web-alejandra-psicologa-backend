@@ -31,11 +31,14 @@ En producción configura `SESSION_COOKIE_SECURE=true` y sirve frontend y API exc
 Todas las rutas bajo `/api/admin/` requieren una sesión de administradora. Las rutas de escritura requieren además el encabezado `X-CSRF-Token`, con el mismo valor que la cookie `admin_csrf`:
 
 - `GET` y `PUT /api/admin/content/homepage`: consultar y actualizar el contenido de la página.
+- `POST /api/admin/uploads`: subir imágenes JPG, PNG o WEBP de hasta 5 MB.
 - `GET /api/admin/messages`: listar mensajes, con filtros por estado y paginación.
 - `PATCH /api/admin/messages/{id}`: marcar un mensaje como `unread`, `read` o `archived`.
 - `DELETE /api/admin/messages/{id}`: eliminar un mensaje.
 
 El contenido de inicio se valida con el mismo contrato en tres puntos: al cargar la semilla, al responder la ruta pública y antes de guardar una edición privada. Si falta una sección, un texto obligatorio o se añaden campos no reconocidos, la API rechaza la edición con `422` y conserva la versión anterior.
+
+Las imágenes subidas se sirven desde `/api/uploads/` y se guardan en `data/uploads` por defecto. Docker Compose configura el directorio `/app/data/uploads` en el volumen persistente `uploads_data`, por lo que las imágenes permanecen tras reiniciar o recrear el contenedor.
 
 ## Desarrollo local
 

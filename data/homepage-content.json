@@ -132,7 +132,10 @@
     "intro": "Escríbeme y hablemos. Te responderé personalmente, sin compromiso, y juntas veremos si soy la persona adecuada para acompañarte.",
     "email": "[email@placeholder.com]",
     "phone": "[+34 000 000 000]",
-    "location": "[Ciudad] · Sesiones online y presenciales"
+    "location": "[Ciudad] · Sesiones online y presenciales",
+    "emailVisible": true,
+    "phoneVisible": true,
+    "locationVisible": true
   },
   "footer": {
     "description": "Psicología con calidez humana y rigor profesional. Un espacio seguro para tu bienestar emocional.",
