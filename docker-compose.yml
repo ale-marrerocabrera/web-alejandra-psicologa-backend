@@ -2,14 +2,15 @@ services:
   api:
     build: .
     ports:
-      - "8080:8000"
+      # El Nginx del servidor es el único punto de entrada público.
+      - "127.0.0.1:8080:8000"
     environment:
       APP_ENV: production
-      DATABASE_URL: postgresql+psycopg://alejandra:alejandra@db:5432/alejandra
-      FRONTEND_ORIGINS: http://localhost:3000
+      DATABASE_URL: ${DATABASE_URL:?Define DATABASE_URL en el archivo .env del servidor}
+      FRONTEND_ORIGINS: ${FRONTEND_ORIGINS:?Define FRONTEND_ORIGINS en el archivo .env del servidor}
       ADMIN_EMAIL: ${ADMIN_EMAIL:-}
       ADMIN_PASSWORD: ${ADMIN_PASSWORD:-}
-      SESSION_COOKIE_SECURE: ${SESSION_COOKIE_SECURE:-false}
+      SESSION_COOKIE_SECURE: "true"
       UPLOAD_DIR: /app/data/uploads
     depends_on:
       db:
@@ -23,7 +24,7 @@ services:
     environment:
       POSTGRES_DB: alejandra
       POSTGRES_USER: alejandra
-      POSTGRES_PASSWORD: alejandra
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Define POSTGRES_PASSWORD en el archivo .env del servidor}
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U alejandra -d alejandra"]
       interval: 5s

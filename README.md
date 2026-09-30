@@ -57,7 +57,16 @@ La documentación interactiva estará disponible en `http://localhost:8080/docs`
 docker compose up --build
 ```
 
-Inicia la API en `http://localhost:8080`, PostgreSQL y aplica las migraciones pendientes antes de arrancar el servidor.
+En producción, antes de iniciar, copia `.env.production.example` a `.env` en
+el servidor y reemplaza todos sus valores. Ese archivo no se versiona. La API
+solo queda disponible en `127.0.0.1:8080`; el Nginx del servidor debe
+publicar `https://tudominio.es/api/` y reenviar las solicitudes a ese puerto.
+También debe enviar los encabezados `Host`, `X-Forwarded-For` y
+`X-Forwarded-Proto`.
+
+La configuración de producción aplica las migraciones pendientes antes de
+arrancar, conserva el contenido guardado en la base de datos y usa cookies de
+sesión seguras exclusivamente por HTTPS.
 
 ## Próximos pasos de administración
 
