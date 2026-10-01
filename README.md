@@ -59,7 +59,7 @@ docker compose up --build
 
 En producción, antes de iniciar, copia `.env.production.example` a `.env` en
 el servidor y reemplaza todos sus valores. Ese archivo no se versiona. La API
-solo queda disponible en `127.0.0.1:8080`; el Nginx del servidor debe
+solo queda disponible en `127.0.0.1:18080`; el Nginx del servidor debe
 publicar `https://tudominio.es/api/` y reenviar las solicitudes a ese puerto.
 También debe enviar los encabezados `Host`, `X-Forwarded-For` y
 `X-Forwarded-Proto`.
